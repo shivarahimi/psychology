@@ -1,3 +1,4 @@
+"use client";
 // base
 import { FC } from "react";
 // lib
@@ -16,18 +17,36 @@ export interface IPassType {
 
 type ICombinedPageType = ITextInputProps & (ITextType | IPassType);
 
-const TextInput: FC<ICombinedPageType> = ({ type, name, placeholder }) => {
+const TextInput: FC<ICombinedPageType> = ({
+  type,
+  name,
+  onChange,
+  setToFormik,
+  placeholder,
+}) => {
   // formik context
   const { setFieldValue } = useFormikContext();
 
+  // handleChange
+  const handleChange = (
+    param: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    let inputValue: string | number = param.target.value;
+    console.log(inputValue);
+    setFieldValue(name, inputValue);
+
+    if (onChange) {
+      onChange(inputValue);
+    }
+
+    if (setToFormik) {
+      setFieldValue(name, inputValue);
+    }
+  };
+
   const inputPropsObj = {
     name: name,
-    onchange: (
-      param: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-      let inputValue: string | number = param.target.value;
-      setFieldValue(name, inputValue);
-    },
+    onChange: handleChange,
     placeholder: placeholder,
   };
   return (
