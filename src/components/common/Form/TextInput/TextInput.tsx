@@ -21,32 +21,29 @@ const TextInput: FC<ICombinedPageType> = ({
   type,
   name,
   onChange,
-  setToFormik,
   placeholder,
 }) => {
   // formik context
   const { setFieldValue } = useFormikContext();
 
   // handleChange
-  const handleChange = (
-    param: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    let inputValue: string | number = param.target.value;
-    console.log(inputValue);
-    setFieldValue(name, inputValue);
-
-    if (onChange) {
-      onChange(inputValue);
-    }
-
-    if (setToFormik) {
-      setFieldValue(name, inputValue);
-    }
-  };
+  // const handleChange = (
+  //   param: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  // ) => {
+  //   let inputValue: string | number = param.target.value;
+  //   console.log(inputValue);
+  //   setFieldValue(name, inputValue);
+  // };
 
   const inputPropsObj = {
     name: name,
-    onChange: handleChange,
+    onChange: (
+      param: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+      let inputValue: string | number = param.target.value;
+      console.log(inputValue);
+      setFieldValue(name, inputValue);
+    },
     placeholder: placeholder,
   };
   return (

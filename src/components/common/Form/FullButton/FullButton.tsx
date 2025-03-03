@@ -10,7 +10,7 @@ import { btnTextTypeEnum, buttonTypeEnum } from "@/core/enums/button.enum";
 interface IPropType {
   type?: buttonTypeEnum;
   btnText?: string;
-  isLoading: boolean;
+  isLoading?: boolean;
 }
 
 const FullButton: FC<IPropType> = ({

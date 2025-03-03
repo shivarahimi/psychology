@@ -6,9 +6,11 @@ import { TextInput } from "@/components/common/Form/TextInput/TextInput";
 // core
 import { textInputType } from "@/core/enums/textInput-type.enum";
 
-interface IPropType {}
+interface IPropType {
+  isLoading: boolean;
+}
 
-const PasswordCode: FC<IPropType> = () => {
+const PasswordCode: FC<IPropType> = ({ isLoading }) => {
   return (
     <>
       <TextInput name="userName" placeholder="نام کاربری" />
@@ -17,7 +19,7 @@ const PasswordCode: FC<IPropType> = () => {
         type={textInputType.password}
         placeholder="رمز عبور"
       />
-      <FullButton isLoading={false} />
+      <FullButton isLoading={isLoading} />
     </>
   );
 };

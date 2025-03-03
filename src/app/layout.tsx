@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../styles/globals.scss";
+import { CoreProvider } from "@/components/provider/CoreProvider/CoreProvider";
 
 export const metadata: Metadata = {
   icons: "/images/general/logo.svg",
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body>{children}</body>
+      <body>
+        <CoreProvider>{children}</CoreProvider>
+      </body>
     </html>
   );
 }
