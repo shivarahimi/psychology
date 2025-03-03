@@ -1,3 +1,5 @@
+"use client";
+
 // base
 import { FC } from "react";
 // lib
@@ -8,7 +10,7 @@ import { btnTextTypeEnum, buttonTypeEnum } from "@/core/enums/button.enum";
 interface IPropType {
   type?: buttonTypeEnum;
   btnText?: string;
-  isLoading: boolean;
+  isLoading?: boolean;
 }
 
 const FullButton: FC<IPropType> = ({
@@ -17,7 +19,7 @@ const FullButton: FC<IPropType> = ({
   isLoading,
 }) => {
   return (
-    <Button htmlType={type ? type : "submit"} loading={isLoading}>
+    <Button htmlType="submit" loading={isLoading}>
       {btnText ? btnText : btnTextTypeEnum.add}
     </Button>
   );

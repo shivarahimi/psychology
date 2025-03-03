@@ -1,3 +1,4 @@
+"use client";
 // base
 import { FC } from "react";
 // components
@@ -16,9 +17,7 @@ const Header: FC<IPropType> = () => {
   return (
     <header className="mx-auto lg:w-[85%] xl:w-[65%] w-[95%] py-8">
       <section className="flex items-center justify-between">
-        <div className="lg:hidden">
-          <HeaderResponsive />
-        </div>
+        <div className="lg:hidden">{/* <HeaderResponsive /> */}</div>
         <FullImage src={logo} alt="لوگو" width={140} height={140} />
 
         <ul className="hidden lg:flex items-center justify-center gap-5">
