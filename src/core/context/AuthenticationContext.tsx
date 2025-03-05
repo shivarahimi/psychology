@@ -43,6 +43,7 @@ const useUserAuth = () => {
 //Provider ===> سه:فراهم کردن داده در درخت کامپوننت ها
 const AuthenticationContext: FC<IAuthenticationContext> = ({ children }) => {
   const token = getAccessToken() ? String(getAccessToken()) : "";
+  console.log("tokenContext", token);
   // const refreshToken =
 
   // states

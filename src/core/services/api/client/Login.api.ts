@@ -2,8 +2,8 @@ import { AxiosResponse } from "axios";
 import { useMutation } from "react-query";
 // core
 import { IAxiosResult } from "@/core/models/axios-result.model";
-import { ILoginPayload } from "@/core/types/payload/Login.Payload";
 import { https } from "../../interceptors/https.interceptors";
+import { ILoginPayload } from "@/core/types/payload/Login.payload";
 
 //Login
 const Login = async (
