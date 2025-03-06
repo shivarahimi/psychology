@@ -9,3 +9,9 @@ export const GetCourses = async (
 ): Promise<AxiosResponse<IAxiosResult>> => {
   return await https().post(`/api/Course/GetCourses`, payload);
 };
+// GetCourse
+export const GetCourse = async (
+  id: string
+): Promise<AxiosResponse<IAxiosResult>> => {
+  return await https().get(`/api/Course/GetCourse?id=${id}`);
+};

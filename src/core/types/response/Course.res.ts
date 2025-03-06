@@ -21,4 +21,14 @@ export interface IGetCoursesList {
   studentsCount: number;
   episodeCount: number;
   isOwned: boolean;
+  courseEpisodes: [
+    {
+      id: number;
+      title: string;
+      isActive: boolean;
+      courseId: number;
+      startDateTimeShamsi: string;
+      endDateTimeShamsi: string;
+    }
+  ];
 }

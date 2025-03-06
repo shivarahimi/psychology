@@ -7,6 +7,7 @@ import {
   IGetCoursesResult,
   IGetCoursesList,
 } from "@/core/types/response/Course.res";
+import { HeadTitle } from "@/components/common/HeadTitle/HeadTitle";
 
 interface IPropType {}
 
@@ -31,9 +32,11 @@ const LastCourses: FC<IPropType> = async () => {
 
   return (
     <section>
+      <HeadTitle title="آخرین" href="/courses" />
       <section className=" mx-auto lg:w-[85%] xl:w-[65%] w-[95%] grid grid-cols-4 gap-8">
         {leastCourses?.map((item) => (
           <CourseCard
+            currentCourse={item}
             picture={item?.picture}
             title={item?.title}
             price={item.price}
