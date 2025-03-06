@@ -43,6 +43,8 @@ const useUserAuth = () => {
 //Provider ===> سه:فراهم کردن داده در درخت کامپوننت ها
 const AuthenticationContext: FC<IAuthenticationContext> = ({ children }) => {
   const token = getAccessToken() ? String(getAccessToken()) : "";
+  const userInfo = getLoggedUserInfoFromStorage();
+  console.log("tokenContext", token);
   // const refreshToken =
 
   // states
@@ -58,8 +60,6 @@ const AuthenticationContext: FC<IAuthenticationContext> = ({ children }) => {
     useState<IUserInfoType>(initialUserInfoState);
 
   useEffect(() => {
-    const userInfo = getLoggedUserInfoFromStorage();
-    console.log("userInfoContext", userInfo);
     setUserInfoState(userInfo);
   }, []);
 

@@ -56,7 +56,8 @@ const LoginContainer: FC<IPropType> = () => {
             setAccessToken(accessToken);
             // setRefreshToken(refreshToken);
             setLoggedUserInfoToStorage(UserInfoObj);
-            setUserInfoState(UserInfoObj);
+
+            setUserInfoState(UserInfoObj); //!
 
             setTimeout(() => {
               window.location.href = "/";
