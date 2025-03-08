@@ -10,8 +10,10 @@ import { IGetCoursesList } from "@/core/types/response/Course.res";
 import { FullButton } from "../../Form/FullButton/FullButton";
 import { FullAlert } from "../../FullAlert/FullAlert";
 import { toastTypes } from "@/core/enums/toast-types.enum";
+import Link from "next/link";
 
 interface IPropType {
+  href: string;
   currentCourse: IGetCoursesList;
   picture: string;
   title: string;
@@ -19,12 +21,13 @@ interface IPropType {
 }
 
 const CourseCard: FC<IPropType> = ({
+  href,
   currentCourse,
   picture,
   title,
   price,
 }) => {
-  // state
+  // context
   const { cart, addToCart } = useShoppingCart();
   // isAlreadyInCart
   const isAlreadyInCart = cart.some(
@@ -33,19 +36,22 @@ const CourseCard: FC<IPropType> = ({
 
   return (
     <section>
-      <section className="bg-white h-52 shadow-sm rounded-2xl cursor-pointer">
-        <FullImage
-          src={
-            picture
-              ? `${envConfig.base_url}/api/Files/${serveFileTypeEnum.Course}/${picture}`
-              : ""
-          }
-          width={200}
-          height={200}
-          alt="آکادمی دکتریت"
-          className=" p-5 flex items-center justify-center"
-        />
-      </section>
+      <Link href={href || ""}>
+        <div className="bg-white h-52 shadow-sm rounded-2xl cursor-pointer">
+          <FullImage
+            src={
+              picture
+                ? `${envConfig.base_url}/api/Files/${serveFileTypeEnum.Course}/${picture}`
+                : ""
+            }
+            width={200}
+            height={200}
+            alt="آکادمی دکتریت"
+            className=" p-5 flex items-center justify-center"
+          />
+        </div>
+      </Link>
+
       <h2>{title}</h2>
       <div className="flex items-center justify-between">
         <span>{price}</span>

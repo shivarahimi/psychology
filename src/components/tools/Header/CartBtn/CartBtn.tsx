@@ -1,19 +1,40 @@
+"use client";
 // base
-import { FC } from "react";
+import { FC, useState } from "react";
 // components
 import { CountBadge } from "@/components/common/CountBadge/CountBadge";
 // lib
-import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import { useShoppingCart } from "@/core/context/ShoppingCartContext";
+import { PiShoppingCartSimpleFill } from "react-icons/pi";
+import { ShoppingCartModal } from "./ShoppingCartModal/ShoppingCartModal";
 
 interface IPropType {}
 
 const CartBtn: FC<IPropType> = () => {
-  const { cart } = useShoppingCart();
+  // state
+  const [showShoppingCart, setShowShoppingCart] = useState<boolean>(false);
+  // context
+  const { cart, removeFromCart } = useShoppingCart();
+
   return (
-    <CountBadge countNumber={cart.length}>
-      <PiShoppingCartSimpleFill size={20} className="cursor-pointer" />
-    </CountBadge>
+    // استفاده از مودال اختصاصی در جاییکه دکمه مربوطه است
+    <>
+      <ShoppingCartModal
+        isOpen={showShoppingCart}
+        toggleModal={() => setShowShoppingCart(false)}
+        cart={cart}
+        removeFromCart={removeFromCart}
+      />
+
+      <section
+        onMouseEnter={() => setShowShoppingCart(true)}
+        className="cursor-pointer"
+      >
+        <CountBadge countNumber={cart.length}>
+          <PiShoppingCartSimpleFill size={20} className="cursor-pointer" />
+        </CountBadge>
+      </section>
+    </>
   );
 };
 

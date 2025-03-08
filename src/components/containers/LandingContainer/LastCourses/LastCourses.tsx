@@ -36,6 +36,7 @@ const LastCourses: FC<IPropType> = async () => {
       <section className=" mx-auto lg:w-[85%] xl:w-[65%] w-[95%] grid grid-cols-4 gap-8">
         {leastCourses?.map((item) => (
           <CourseCard
+            href={`courses/${item.id}`}
             currentCourse={item}
             picture={item?.picture}
             title={item?.title}

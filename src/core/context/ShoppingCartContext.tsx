@@ -19,14 +19,14 @@ interface IShoppingCartContext {
   children: ReactNode;
 }
 // type for shopping state
-interface ShoppingCartItem {
+export interface ShoppingCartItem {
   course: IGetCoursesList | null;
 }
 // type for value provider
 export interface shoppingCartContextType {
   cart: ShoppingCartItem[];
   addToCart: (course: IGetCoursesList | null) => void;
-  removeFromCart: (id: string) => void;
+  removeFromCart: (id: string | undefined) => void;
   clearCart: () => void;
 }
 
@@ -73,7 +73,7 @@ const ShoppingCartProvider: FC<IShoppingCartContext> = ({ children }) => {
     }
   };
   // Remove course from the cart
-  const removeFromCart = (id: string) => {
+  const removeFromCart = (id: string | undefined) => {
     // filter ===> روی یک آرایه فیلتر میکند و نتیجه را به صورت آرایه جدید به ما می دهد
     // آیتم هایی از درس که برابر نباشد با چیزی که من دارم انتخاب میکنم فیلتر میشن و در آرایه باقی میمانند
     setCart((prevCart) => prevCart.filter((item) => item.course?.id !== id));
