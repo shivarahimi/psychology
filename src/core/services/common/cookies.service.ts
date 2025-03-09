@@ -68,4 +68,30 @@ const getGenericCookie = (name: string) => {
     return null;
   }
 };
-export { getCookie, setCookie, setGenericCookie, getGenericCookie };
+// clearAllCookies
+const clearAllCookies = (): void => {
+  const client = getClient();
+  if (client) {
+    // کوکی در مرورگر به صورت رشته با علامت ";" ذخیره میشود با اسپلیت رشته هایی که با علامت از هم جدا شدند
+    // به صورت آرایه کنار هم قرار میگیرند
+    const cookies = client.document.cookie.split(";");
+    // هر کوکی موجود در آرایه بررسی میشود
+    for (const cookie of cookies) {
+      // موقعیت = در هر کوکی پیدا میشود، اگر پیدا شد به این معناست که کوکی معتبر است و نامش استخراج میشود
+      // اگر پیدا نشد یعنی یک مقدار بدون نام است و تمام کوکی به عنوان نام در نظر گرفته میشه
+      const eqPos = cookie.indexOf("=");
+      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      // هر کوکی با نام مشخص حذف میشود ،آنهایی که تاریخ انقضایشان گذشته
+      // path=/ ===> از همه مسیرهای سایت حذف میشود
+      client.document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+    }
+  }
+};
+
+export {
+  getCookie,
+  setCookie,
+  setGenericCookie,
+  getGenericCookie,
+  clearAllCookies,
+};

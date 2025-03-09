@@ -35,7 +35,7 @@ const setItemGeneric = (
     storage.setItem(key, JSON.stringify(value));
   }
 };
-
+// getItemGeneric
 const getItemGeneric = (type: storageTypeEnum, key: string): any => {
   const storage = getStorage(type);
 
@@ -46,4 +46,12 @@ const getItemGeneric = (type: storageTypeEnum, key: string): any => {
     return null;
   }
 };
-export { getItem, setItem, setItemGeneric, getItemGeneric };
+//clearStorage
+const clearStorage = (type: storageTypeEnum): void => {
+  const storage = getStorage(type);
+  if (storage) {
+    storage.clear();
+  }
+};
+
+export { getItem, setItem, setItemGeneric, getItemGeneric, clearStorage };
